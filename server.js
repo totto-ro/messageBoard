@@ -22,7 +22,7 @@ app.get("/", function( request, response ){
     .getAllMessages()
     .then( data =>{
         console.log( data );
-        response.render( 'index', { messages:data });
+        response.render( 'index', { message:data });
     })
     .catch(err => console.log(err));
 });
@@ -63,15 +63,15 @@ app.post("/comments/addComment", function( request, response ){
         comment,
     };
     MessageModel
-        .createComment( id, newComment )
+        .updateUserComment( id, newComment )
         .then( result => {
+            console.log("---------------------------- ");
             console.log("New comment: " + result);
             response.redirect("/");
         })
-        .catch( err => {
-            console.log("---------------------------- ");
-            console.log( "Something went wrong!", err );
-            console.log("---------------------------- ");
+        .catch( error => {
+            console.log( "Something went wrong!", error );
+            console.log("_______________________________");
             request.flash( 'errorComment', 'You have to fill all the spaces!' );
             response.redirect( '/' );
         })

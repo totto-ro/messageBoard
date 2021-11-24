@@ -11,12 +11,18 @@ const CommentSchema = new mongoose.Schema({
     comment : {
         type : String,
         required : true,
-        minlength : 5,
-        maxlength : 20
+        minlength : 2,
+        maxlength : 200
     }
 }, { timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' } });
 
-const CommentModel = mongoose.model('Comment', CommentSchema);
+const Comment = mongoose.model('comments', CommentSchema);
+
+const CommentModel = {
+    addComment : function( newComment ){
+        return Comment.create( newComment );
+    }
+}
 
 module.exports = {
     CommentSchema,

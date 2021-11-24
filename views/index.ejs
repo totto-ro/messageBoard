@@ -26,14 +26,14 @@
         </form>
 
             <div>
-                <% for( let i = 0; i < messages.length; i++ ){  %>
+                <% for( let i = 0; i < message.length; i++ ){  %>
                     <div>
-                        <h3>Name: <%= messages[i].name %></h3>
-                        <h3>Message: <%= messages[i].message %></h3>
-                        <% for(let j = 0; j < messages[i].comments.length; j ++ ){ %>
+                        <h3>Name: <%= message[i].name %></h3>
+                        <h3>Message: <%= message[i].message %></h3>
+                        <% for(let j = 0; j < message[i].comments.length; j ++ ){ %>
                             <div class="comments">
-                                <h5><%="Name: " + messages[i].comments[j].name %></h5>
-                                <h5><%="Comment: " + messages[i].comments[j].comment %></h5>
+                                <h5><%="Name: " + message[i].comments[j].name %></h5>
+                                <h5><%="Comment: " + message[i].comments[j].comment %></h5>
                             </div>
                         <% } %>
     
@@ -43,7 +43,7 @@
                                         <p> <%= messages.errorComment %> </p>
                                 </div>
                             <% } %>
-                            <input type="hidden" name="message_id" value="<%= messages[i].id %>"> 
+                            <input type="hidden" name="message_id" value="<%= message[i].id %>"> 
                             <label class="margin" for="name">Name: </label>
                             <input class="comment_input" type="text" id="name" name="name">
                             <label class="margin" for="comment">Comment: </label>

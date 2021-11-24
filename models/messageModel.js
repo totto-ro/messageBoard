@@ -12,7 +12,7 @@ const MessageSchema = new mongoose.Schema({
         type : String,
         required : true,
         minlength : 5,
-        maxlength : 20
+        maxlength : 100
     },
     comments:[CommentSchema]
     
@@ -39,6 +39,12 @@ const MessageModel = {
     },
     createComment: function( id, newComment ){
         return Message.updateOne( { _id : id }, {$push:{comments: newComment}})
+    },
+    updateUserComment : function( id, newComment ){
+        return CommentModel.addComment( newComment )
+            .then( result => {
+                return Message.findByIdAndUpdate({_id: id}, {$push: {comments: result}});
+            });
     }
 
 };
