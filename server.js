@@ -71,7 +71,6 @@ app.post("/comments/addComment", function( request, response ){
         })
         .catch( error => {
             console.log( "Something went wrong!", error );
-            console.log("_______________________________");
             request.flash( 'errorComment' + id, 'You have to fill all the spaces!' );
             response.redirect( '/' );
         })

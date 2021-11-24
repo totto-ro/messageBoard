@@ -38,7 +38,7 @@
                         <% } %>
     
                         <form class= "form" action='/comments/addComment' method="post">
-                            <% if( messages['errorComment' + message[i].id] ){ %>
+                            <% if( messages[ 'errorComment' + message[i].id ] ){ %>
                                 <div>
                                         <p> <%= messages[ 'errorComment' + message[i].id ] %> </p>
                                 </div>
