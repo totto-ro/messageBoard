@@ -38,18 +38,21 @@
                         <% } %>
     
                         <form class= "form" action='/comments/addComment' method="post">
-                            <% if( messages.errorComment ){ %>
+                            <% if( messages['errorComment' + message[i].id] ){ %>
                                 <div>
-                                        <p> <%= messages.errorComment %> </p>
+                                        <p> <%= messages[ 'errorComment' + message[i].id ] %> </p>
                                 </div>
-                            <% } %>
+                            <% } %> 
                             <input type="hidden" name="message_id" value="<%= message[i].id %>"> 
                             <label class="margin" for="name">Name: </label>
                             <input class="comment_input" type="text" id="name" name="name">
                             <label class="margin" for="comment">Comment: </label>
                             <textarea class="comment_text" id="comment" name="comment"></textarea>
+
                             <input id="buttonMessage" type="submit" value="Comment message">
+                        
                         </form>
+                        
                     </div>
                 <% } %>
             </div>
