@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>Message Board</title>
+</head>
+<body>
+    <main>
+        <div id="title">
+            <h1>The Dojo Message Board</h1>
+        </div>
+        <form action="/newMessage" method="post">
+            <% if( messages.messageError ){ %>
+                <div>
+                        <p> <%= messages.messageError %> </p>
+                </div>
+            <% } %>
+            <label for="name">Name: </label>
+            <input type="text" name="name">
+            <label for="message">Message: </label>
+            <textarea name="message"></textarea>
+            <input id="buttonMessage" type="submit" value="Post message">
+        </form>
+
+            <div>
+                <% for( let i = 0; i < messages.length; i++ ){  %>
+                    <div>
+                        <h3>Name: <%= messages[i].name %></h3>
+                        <h3>Message: <%= messages[i].message %></h3>
+                        <% for(let j = 0; j < messages[i].comments.length; j ++ ){ %>
+                            <div class="comments">
+                                <h5><%="Name: " + messages[i].comments[j].name %></h5>
+                                <h5><%="Comment: " + messages[i].comments[j].comment %></h5>
+                            </div>
+                        <% } %>
+    
+                        <form class= "form" action='/comments/addComment' method="post">
+                            <% if( messages.errorComment ){ %>
+                                <div>
+                                        <p> <%= messages.errorComment %> </p>
+                                </div>
+                            <% } %>
+                            <input type="hidden" name="message_id" value="<%= messages[i].id %>"> 
+                            <label class="margin" for="name">Name: </label>
+                            <input class="comment_input" type="text" id="name" name="name">
+                            <label class="margin" for="comment">Comment: </label>
+                            <textarea class="comment_text" id="comment" name="comment"></textarea>
+                            <input id="buttonMessage" type="submit" value="Comment message">
+                        </form>
+                    </div>
+                <% } %>
+            </div>
+    </main>
+</body>
+</html>
